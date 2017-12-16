@@ -42,9 +42,10 @@ const numberDirectionToString = {
 module.exports = {
     getNextDirection: function (boardMeta) {
         for (let nextDirection = 0; nextDirection < 3; nextDirection++) {
-            console.log(boardMeta.isWallLeft, boardMeta.isWallFront, boardMeta.isWallRight, nextDirection);
 
-            if (network.activate([boardMeta.isWallLeft, boardMeta.isWallFront, boardMeta.isWallRight, nextDirection]) > 0.5) {
+            const networkResponse = network.activate([boardMeta.isWallLeft, boardMeta.isWallFront, boardMeta.isWallRight, nextDirection]);
+            console.log(boardMeta.isWallLeft, boardMeta.isWallFront, boardMeta.isWallRight, nextDirection, networkResponse);
+            if (networkResponse > 0.5) {
                 return numberDirectionToString[nextDirection];
             }
         }
