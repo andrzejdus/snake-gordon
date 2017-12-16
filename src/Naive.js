@@ -18,26 +18,26 @@ module.exports = {
                 if (dx != 0) {
                     nextDirection = dx > 0 ? 'R' : 'L';
                 } else {
-                    nextDirection = dy > 0 ? 'L' : undefined;
+                    nextDirection = dy > 0 ? 'L' : 'F';
                 }
                 break;
             case 'S':
                 if (dx != 0) {
                     nextDirection = dx > 0 ? 'L' : 'R';
                 } else {
-                    nextDirection = dy > 0 ? undefined : 'L';
+                    nextDirection = dy > 0 ? 'F' : 'L';
                 }
                 break;
             case 'W':
                 if (dx != 0) {
-                    nextDirection = dx > 0 ? 'L' : undefined;
+                    nextDirection = dx > 0 ? 'L' : 'F';
                 } else {
                     nextDirection = dy > 0 ? 'L': 'R';
                 }
                 break;
             case 'E':
                 if (dx != 0) {
-                    nextDirection = dx > 0 ? undefined : 'L';
+                    nextDirection = dx > 0 ? 'F' : 'L';
                 } else {
                     nextDirection = dy > 0 ? 'R': 'L';
                 }
@@ -46,6 +46,21 @@ module.exports = {
                 break;
         }
 
-        return nextDirection;
+        const m = {
+            'L': 'left',
+            'R': 'right'
+        };
+
+        const n = {
+            'L': 'R',
+            'R': 'L',
+            'F': 'R'
+        };
+
+        if (boardMeta.walls[m[nextDirection]]) {
+            nextDirection = n[nextDirection];
+        }
+
+        return nextDirection == 'F' ? undefined : nextDirection;
     }
 };
