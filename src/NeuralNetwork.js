@@ -28,11 +28,8 @@ for (let i = 0; i < 2; i++) {
     }
 }
 
-console.log(trainingSet);
-
 const trainer = new Trainer(network);
 trainer.train(trainingSet);
-console.log(network);
 
 const numberDirectionToString = {
     0: 'L',

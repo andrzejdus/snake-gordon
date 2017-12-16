@@ -13,6 +13,8 @@ const boardMeta = {
     board: undefined
 };
 
+const isSmartGordon = true;
+
 function init(options) {
     boardMeta.me = options.you;
     boardMeta.boardWidth = options.board.width;
@@ -23,7 +25,7 @@ function init(options) {
 
 function getMove(board) {
     boardMeta.board = board;
-    console.log(boardMeta);
+    //console.log(boardMeta);
 
     for (let x = 0; x < boardMeta.boardWidth; x++) {
         for (let y = 0; y < boardMeta.boardHeight; y++) {
@@ -52,8 +54,7 @@ function getMove(board) {
         }
     }
 
-    // return Naive.getNextDirection(boardMeta);
-    return NeuralNetwork.getNextDirection(boardMeta);
+    return isSmartGordon ? NeuralNetwork.getNextDirection(boardMeta) : Naive.getNextDirection(boardMeta);
 }
 
 module.exports = init;
