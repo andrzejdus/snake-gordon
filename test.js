@@ -18,6 +18,7 @@ const index = new Index({
     "you": 3,
 });
 
+console.log('1');
 console.log('Next move', index.getMove([
         [
             undefined, // empty,
@@ -36,6 +37,7 @@ console.log('Next move', index.getMove([
     ]
 ));
 
+console.log('2');
 console.log('Next move', index.getMove([
         [
             undefined, // empty,
@@ -54,6 +56,7 @@ console.log('Next move', index.getMove([
     ]
 ));
 
+console.log('3');
 console.log('Next move', index.getMove([
         [
             undefined, // empty,
@@ -68,6 +71,21 @@ console.log('Next move', index.getMove([
             {
                 "player": 2,
             },
+        ]
+    ]
+));
+
+console.log('4');
+console.log('Next move', index.getMove([
+        [
+            undefined, // empty,
+            {
+                "player": 3,
+                "head": ['N', 'E', 'S', 'W'][1],
+            },
+            undefined, // empty,
+            undefined, // empty,
+            "🍎", // apple
         ]
     ]
 ));

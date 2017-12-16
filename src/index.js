@@ -13,7 +13,7 @@ const boardMeta = {
     board: undefined
 };
 
-const isSmartGordon = true;
+const isSmartGordon = false;
 
 function init(options) {
     boardMeta.me = options.you;
@@ -25,19 +25,19 @@ function init(options) {
 
 function getMove(board) {
     boardMeta.board = board;
-    //console.log(boardMeta);
 
     for (let x = 0; x < boardMeta.boardWidth; x++) {
         for (let y = 0; y < boardMeta.boardHeight; y++) {
             const current = boardMeta.board[y][x];
 
+            console.log(x, y, current);
+
             if (!current) {
                 continue;
             }
 
-            console.log(x, y, current);
-
             if (current == '🍎') {
+                console.log('found apple', x, y);
                 boardMeta.applePosition.x = x;
                 boardMeta.applePosition.y = y;
             }

@@ -68,6 +68,6 @@ module.exports = {
 
         const tile = boardMeta.board[y][x];
 
-        return tile.dead || tile.player !== undefined;
+        return tile !== undefined && (tile.dead || tile.player !== undefined);
     }
 };

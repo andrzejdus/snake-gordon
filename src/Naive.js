@@ -9,6 +9,8 @@ module.exports = {
         const dx = destination.x - myPosition.x;
         const dy = destination.y - myPosition.y;
 
+        console.log('getNextDirection, dx, dy', dx, dy);
+
         let nextDirection;
 
         switch (head) {
