@@ -30,8 +30,6 @@ function getMove(board) {
         for (let y = 0; y < boardMeta.boardHeight; y++) {
             const current = boardMeta.board[y][x];
 
-            console.log(x, y, current);
-
             if (!current) {
                 continue;
             }

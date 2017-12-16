@@ -23,7 +23,7 @@ module.exports = {
                 break;
             case 'S':
                 if (dx != 0) {
-                    nextDirection = dx > 0 ? 'R' : 'L';
+                    nextDirection = dx > 0 ? 'L' : 'R';
                 } else {
                     nextDirection = dy > 0 ? undefined : 'L';
                 }
@@ -39,7 +39,7 @@ module.exports = {
                 if (dx != 0) {
                     nextDirection = dx > 0 ? undefined : 'L';
                 } else {
-                    nextDirection = dy > 0 ? 'L': 'R';
+                    nextDirection = dy > 0 ? 'R': 'L';
                 }
                 break;
             default:
