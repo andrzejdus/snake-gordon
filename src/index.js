@@ -5,6 +5,7 @@ const Naive = require('./Naive.js');
 const boardMeta = {
     applePosition: { x: 0, y: 0 },
     myPosition: { x: 0, y: 0 },
+    walls: {},
     head: 'N',
     me: undefined,
     boardWidth: undefined,
@@ -45,14 +46,14 @@ function getMove(board) {
                 boardMeta.head = current.head;
             }
 
-            boardMeta.isWallLeft = Collision.isWall(boardMeta, 'left');
-            boardMeta.isWallFront = Collision.isWall(boardMeta, 'front');
-            boardMeta.isWallRight = Collision.isWall(boardMeta, 'right');
+            boardMeta.walls.left = Collision.isWall(boardMeta, 'left');
+            boardMeta.walls.front = Collision.isWall(boardMeta, 'front');
+            boardMeta.walls.right = Collision.isWall(boardMeta, 'right');
         }
     }
 
-    return Naive.getNextDirection(boardMeta);
-    // return NeuralNetwork.getNextDirection(boardMeta);
+    // return Naive.getNextDirection(boardMeta);
+    return NeuralNetwork.getNextDirection(boardMeta);
 }
 
 module.exports = init;

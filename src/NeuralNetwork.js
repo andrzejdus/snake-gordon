@@ -43,8 +43,11 @@ module.exports = {
     getNextDirection: function (boardMeta) {
         for (let nextDirection = 0; nextDirection < 3; nextDirection++) {
 
-            const networkResponse = network.activate([boardMeta.isWallLeft, boardMeta.isWallFront, boardMeta.isWallRight, nextDirection]);
-            console.log(boardMeta.isWallLeft, boardMeta.isWallFront, boardMeta.isWallRight, nextDirection, networkResponse);
+            const networkResponse =
+                network.activate([boardMeta.walls.left, boardMeta.walls.front, boardMeta.walls.right, nextDirection]);
+
+            console.log(boardMeta.walls.left, boardMeta.walls.front, boardMeta.walls.right, nextDirection, networkResponse);
+
             if (networkResponse > 0.5) {
                 return numberDirectionToString[nextDirection];
             }
