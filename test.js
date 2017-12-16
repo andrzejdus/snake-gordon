@@ -1,4 +1,4 @@
-const Index = require('./index.js');
+const Index = require('./src/index.js');
 
 const index = new Index({
     "type": ["snake"][0],
@@ -18,8 +18,7 @@ const index = new Index({
     "you": 3,
 });
 
-const nextMove = index.getMove({
-    "board": [
+console.log('Next move', index.getMove([
         [
             undefined, // empty,
             "🍎", // apple
@@ -35,6 +34,40 @@ const nextMove = index.getMove({
             }
         ]
     ]
-});
+));
 
-console.log('Next move', nextMove);
+console.log('Next move', index.getMove([
+        [
+            undefined, // empty,
+            "🍎", // apple
+            {
+                "dead": true,
+            },
+            {
+                "player": 3,
+                "head": ['N', 'E', 'S', 'W'][3],
+            },
+            {
+                "player": 2,
+            },
+        ]
+    ]
+));
+
+console.log('Next move', index.getMove([
+        [
+            undefined, // empty,
+            "🍎", // apple
+            {
+                "player": 3,
+                "head": ['N', 'E', 'S', 'W'][3],
+            },
+            {
+                "dead": true,
+            },
+            {
+                "player": 2,
+            },
+        ]
+    ]
+));
