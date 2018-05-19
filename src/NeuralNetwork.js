@@ -5,7 +5,7 @@ const Neuron = synaptic.Neuron,
     Trainer = synaptic.Trainer,
     Architect = synaptic.Architect;
 
-const network = new Architect.Perceptron(4, 25, 1);
+const network = new Architect.Perceptron(5, 25, 1);
 
 function isRightMove(input) {
     const direction = input[3];
@@ -43,7 +43,7 @@ module.exports = {
             const networkResponse =
                 network.activate([boardMeta.walls.left, boardMeta.walls.front, boardMeta.walls.right, nextDirection]);
 
-            console.log(boardMeta.walls.left, boardMeta.walls.front, boardMeta.walls.right, nextDirection, networkResponse);
+            //console.log(boardMeta.walls.left, boardMeta.walls.front, boardMeta.walls.right, nextDirection, networkResponse);
 
             if (networkResponse > 0.5) {
                 return numberDirectionToString[nextDirection];

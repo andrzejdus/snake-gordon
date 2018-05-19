@@ -1,6 +1,10 @@
-const Index = require('./src/index.js');
+const Snake = require('./src/index.js');
 
-const index = new Index({
+function assertMove(nextMove, rightMove) {
+    console.log('Next move:', nextMove, 'right move:', rightMove, nextMove === rightMove ? 'OK' : 'FAIL');
+}
+
+const snake = new Snake({
     "type": ["snake"][0],
     "start": {
         "x": 0,
@@ -18,8 +22,9 @@ const index = new Index({
     "you": 3,
 });
 
-console.log('1');
-console.log('Next move', index.getMove([
+console.log('-- 1 --');
+console.log('[[-, 🍎, #, #, N]]');
+let nextMove = snake.getMove([
         [
             undefined, // empty,
             "🍎", // apple
@@ -35,10 +40,12 @@ console.log('Next move', index.getMove([
             }
         ]
     ]
-));
+);
+assertMove(nextMove, 'L');
 
-console.log('2');
-console.log('Next move', index.getMove([
+console.log('-- 2 --');
+console.log('[[-, 🍎, #, W, #]]');
+nextMove = snake.getMove([
         [
             undefined, // empty,
             "🍎", // apple
@@ -54,10 +61,12 @@ console.log('Next move', index.getMove([
             },
         ]
     ]
-));
+);
+assertMove(nextMove, undefined);
 
-console.log('3');
-console.log('Next move', index.getMove([
+console.log('-- 3 --');
+console.log('[[-, 🍎, W, #, #]]');
+nextMove = snake.getMove([
         [
             undefined, // empty,
             "🍎", // apple
@@ -73,10 +82,12 @@ console.log('Next move', index.getMove([
             },
         ]
     ]
-));
+);
+assertMove(nextMove, undefined);
 
-console.log('4');
-console.log('Next move', index.getMove([
+console.log('-- 4 --');
+console.log('[[-, E, #, #, 🍎]]');
+nextMove = snake.getMove([
         [
             undefined, // empty,
             {
@@ -88,4 +99,5 @@ console.log('Next move', index.getMove([
             "🍎", // apple
         ]
     ]
-));
+);
+assertMove(nextMove, undefined);

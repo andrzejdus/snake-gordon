@@ -1,6 +1,31 @@
+const io = require("socket.io-client");
 const Collision = require('./Collision.js');
 const NeuralNetwork = require('./NeuralNetwork.js');
 const Naive = require('./Naive.js');
+
+const snakeName = "Gordon";
+// const backendUrl = "https://syzygy-snake-wars.herokuapp.com/";
+const backendUrl = "http://localhost:3001";
+const socket = io.connect(backendUrl, { reconnection: true });
+
+socket.on("connect", function() {
+    console.log(`Snake ${snakeName} sent hello to the server.`);
+    socket.emit("hello", snakeName);
+});
+
+socket.on("init", function(data) {
+    console.log(`Snake ${snakeName} has been accepted by the server.`);
+
+    init(data);
+
+    socket.on("move", function(data) {
+        socket.emit("move", getMove(data));
+    });
+});
+
+socket.on("disconnect", function() {
+    console.log(`Snake ${snakeName} has been disconnected from remote server.`);
+});
 
 const boardMeta = {
     applePosition: { x: 0, y: 0 },
@@ -16,6 +41,8 @@ const boardMeta = {
 const isSmartGordon = false;
 
 function init(options) {
+    console.log(options);
+
     boardMeta.me = options.you;
     boardMeta.boardWidth = options.board.width;
     boardMeta.boardHeight = options.board.height;
@@ -26,16 +53,16 @@ function init(options) {
 function getMove(board) {
     boardMeta.board = board;
 
-    for (let x = 0; x < boardMeta.boardWidth; x++) {
-        for (let y = 0; y < boardMeta.boardHeight; y++) {
-            const current = boardMeta.board[y][x];
+    for (let y = 0; y < boardMeta.boardHeight; y++) {
+        for (let x = 0; x < boardMeta.boardWidth; x++) {
+            const current = boardMeta.board[x][y];
 
             if (!current) {
                 continue;
             }
 
             if (current == '🍎') {
-                console.log('found apple', x, y);
+                console.log('found apple at x: ' + x + ', y: ' + y);
                 boardMeta.applePosition.x = x;
                 boardMeta.applePosition.y = y;
             }
@@ -52,7 +79,10 @@ function getMove(board) {
         }
     }
 
-    return isSmartGordon ? NeuralNetwork.getNextDirection(boardMeta) : Naive.getNextDirection(boardMeta);
+    const move = isSmartGordon ? NeuralNetwork.getNextDirection(boardMeta) : Naive.getNextDirection(boardMeta);
+    console.log('gordon move', move);
+
+    return move;
 }
 
 module.exports = init;

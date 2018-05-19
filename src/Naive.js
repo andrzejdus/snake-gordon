@@ -46,19 +46,20 @@ module.exports = {
                 break;
         }
 
-        const m = {
+        const shortToLong = {
             'L': 'left',
             'R': 'right'
         };
 
-        const n = {
+        const opposite = {
             'L': 'R',
             'R': 'L',
             'F': 'R'
         };
 
-        if (boardMeta.walls[m[nextDirection]]) {
-            nextDirection = n[nextDirection];
+        console.log('walls', boardMeta.walls);
+        if (boardMeta.walls[shortToLong[nextDirection]]) {
+            nextDirection = opposite[nextDirection];
         }
 
         return nextDirection == 'F' ? undefined : nextDirection;

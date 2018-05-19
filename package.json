@@ -4,11 +4,14 @@
   "description": "",
   "main": "src/index.js",
   "dependencies": {
+    "snake-client": "^1.0.5",
+    "socket-io": "^1.0.0",
     "synaptic": "^1.1.4"
   },
   "private": true,
   "devDependencies": {},
   "scripts": {
+    "start": "node src/index.js",
     "test": "node test.js"
   },
   "repository": {
